@@ -14,7 +14,8 @@ Email: szuyhb241@gmail.com
             canvasWidth: win.innerWidth || doc.body.clientWidth || doc.documentElement.clientWidth,
             canvasHeight: win.innerHeight || doc.body.clientHeight || doc.documentElement.clientHeight,
             frameRate: 30,
-            font: '16px Arial',
+            fontSize: '16px',
+            fontFamily: 'Arial',
             rowSpacing: 10,
             avatarRadius: 20,
             avatarBorder: 6,
@@ -24,6 +25,15 @@ Email: szuyhb241@gmail.com
             backgroundColor: '#fdb720',
             bulletScreenInterval: 3000
         };
+    function getPixelRatio(ctx){
+        var backingStore = ctx.backingStorePixelRatio ||
+            ctx.webkitBackingStorePixelRatio ||
+            ctx.mozBackingStorePixelRatio ||
+            ctx.msBackingStorePixelRatio ||
+            ctx.oBackingStorePixelRatio ||
+            ctx.backingStorePixelRatio || 1;
+        return (win.devicePixelRatio || 1) / backingStore;
+    }
     function strokeRoundRect(ctx, x, y, width, height, radius, lineWidth, strokeColor){
         if(2 * radius > width || 2 * radius > height){
             return;
@@ -78,17 +88,17 @@ Email: szuyhb241@gmail.com
             }
             this.configure(opts);
             this.canvas = this.canvas || doc.querySelector('canvas');
-            this.context = this.context || this.canvas.getContext('2d');
             this.canvas.width = this.canvasWidth;
             this.canvas.height = this.canvasHeight;
-            this.canvas.style.width = this.canvasWidth + 'px';
-            this.canvas.style.height = this.canvasHeight + 'px';
+            this.context = this.context || this.canvas.getContext('2d');
+            this.pixelRatio = getPixelRatio(this.context);
             this.millisecondsPerFrame = parseInt(1000 / this.frameRate);
             this.calculations = {
                 avatarDiameter: this.avatarRadius * 2,
                 avatarBoxRadius: this.avatarRadius + this.avatarBorder,
                 contentBoxPositionY: this.contentBoxHeight / -2,
             },
+            this.font = this.fontSize + ' ' + this.fontFamily;
             this.rowHeight = Math.max(this.calculations.avatarBoxRadius * 2, this.contentBoxHeight);
             this.maxRow = Math.floor((this.canvasHeight - this.rowSpacing) / (this.rowHeight + this.rowSpacing));
             return this;
@@ -149,8 +159,8 @@ Email: szuyhb241@gmail.com
                 if(comments[i].active === false){
                     continue;
                 }
-            	ctx.save();
-                ctx.transform(1, 0, 0, 1, comments[i].position.x, comments[i].position.y);
+                ctx.save();
+                ctx.transform(1, 0, 0, 1, comments[i].position.x * this.pixelRatio, comments[i].position.y * this.pixelRatio);
                 
                 ctx.beginPath();
                 ctx.arc(0, 0, calculations.avatarBoxRadius, 0, 2 * Math.PI);
@@ -171,7 +181,7 @@ Email: szuyhb241@gmail.com
                 ctx.strokeStyle = 'transparent';
                 ctx.stroke();
                 ctx.clip();
-                ctx.drawImage(comments[i].img, -this.avatarRadius, -this.avatarRadius, calculations.avatarDiameter, calculations.avatarDiameter);
+                ctx.drawImage(comments[i].img, -this.avatarRadius * this.pixelRatio, -this.avatarRadius * this.pixelRatio, calculations.avatarDiameter * this.pixelRatio, calculations.avatarDiameter * this.pixelRatio);
                 ctx.restore();
             }
         },
@@ -221,13 +231,13 @@ Email: szuyhb241@gmail.com
             this.starting = false;
         },
         configure: function(opts){
-			if(opts && typeof opts === 'object'){
-				if(opts instanceof Object){
-					for(var pro in opts){
-						this[pro] = opts[pro];
-					}
-				}
-			}
-		}
+            if(opts && typeof opts === 'object'){
+                if(opts instanceof Object){
+                    for(var pro in opts){
+                        this[pro] = opts[pro];
+                    }
+                }
+            }
+        }
     };
 })(window);

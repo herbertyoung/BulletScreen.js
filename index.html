@@ -24,6 +24,7 @@
 </head>
 <body>
 	<canvas></canvas>
+	<script src="js/hidpi-canvas.min.js"></script>
 	<script src="js/bulletScreen.min.js"></script>
 	<script>
 		var config = {
@@ -38,7 +39,7 @@
 		document.addEventListener('DOMContentLoaded', function(){
 			window.bulletScreen = new BulletScreen();
 			bulletScreen.init({
-				canvas: document.querySelector('canvas'),
+				canvas: document.querySelector('canvas')
 			}).start();
 			bulletScreen.addComments(config.comments);
 			config.timer = setInterval(function(){
