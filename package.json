@@ -1,5 +1,5 @@
 {
-  "name": "bullet_screen.js",
+  "name": "bulletscreen.js",
   "version": "1.0.0",
   "description": "A JavaScript plugin make a bullet screen using html5 canvas.",
   "main": "Gruntfile.js",
@@ -7,10 +7,23 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Harbor Young",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0"
-  }
+  },
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yhb241/BulletScreen.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yhb241/BulletScreen.js/issues"
+  },
+  "homepage": "https://github.com/yhb241/BulletScreen.js#readme"
 }

@@ -1,18 +1,15 @@
 /*
-
-BulletScreen.js
-A JavaScript plugin make a bullet screen using html5 canvas.
-By Harbor Young
-Email: szuyhb241@gmail.com
-
-*/
-
-(function(win, undefined){
+ * BulletScreen.js
+ * A JavaScript plugin make a bullet screen using html5 canvas.
+ * https://github.com/yhb241/BulletScreen.js
+ * Email: szuyhb241@gmail.com
+ */
+(function(window, undefined){
     'use strict';
-    var doc = win.document,
+    var document = window.document,
         defaults = {
-            canvasWidth: win.innerWidth || doc.body.clientWidth || doc.documentElement.clientWidth,
-            canvasHeight: win.innerHeight || doc.body.clientHeight || doc.documentElement.clientHeight,
+            canvasWidth: window.innerWidth || document.body.clientWidth || document.documentElement.clientWidth,
+            canvasHeight: window.innerHeight || document.body.clientHeight || document.documentElement.clientHeight,
             frameRate: 30,
             fontSize: '16px',
             fontFamily: 'Arial',
@@ -32,7 +29,7 @@ Email: szuyhb241@gmail.com
             ctx.msBackingStorePixelRatio ||
             ctx.oBackingStorePixelRatio ||
             ctx.backingStorePixelRatio || 1;
-        return (win.devicePixelRatio || 1) / backingStore;
+        return (window.devicePixelRatio || 1) / backingStore;
     }
     function strokeRoundRect(ctx, x, y, width, height, radius, lineWidth, strokeColor){
         if(2 * radius > width || 2 * radius > height){
@@ -68,6 +65,20 @@ Email: szuyhb241@gmail.com
         ctx.arc(width - radius, radius, radius, Math.PI * 3 / 2, Math.PI * 2);
         ctx.closePath();
     }
+    function shuffle(array){
+        var arr = [],
+            len = array.length,
+            rand,
+            i;
+        for(i = 0; i < len; i++){
+            rand = Math.floor(Math.random() * (i + 1));
+            if(rand !== i){
+                arr[i] = arr[rand];
+            }
+            arr[rand] = array[i];
+        }
+        return arr;
+    }
     function BulletScreen(opts){
         this.initial = false;
         this.starting = false;
@@ -76,7 +87,7 @@ Email: szuyhb241@gmail.com
         opts && this.init(opts);
         return this;
     };
-    win.BulletScreen = BulletScreen;
+    window.BulletScreen = BulletScreen;
     BulletScreen.prototype = {
         init: function(opts){
             if(this.initial){
@@ -87,7 +98,7 @@ Email: szuyhb241@gmail.com
                 this[pro] = defaults[pro];
             }
             this.configure(opts);
-            this.canvas = this.canvas || doc.querySelector('canvas');
+            this.canvas = this.canvas || document.querySelector('canvas');
             this.canvas.width = this.canvasWidth;
             this.canvas.height = this.canvasHeight;
             this.context = this.context || this.canvas.getContext('2d');
@@ -126,12 +137,13 @@ Email: szuyhb241@gmail.com
                 for(i = 0; i < maxRow; i++){
                     randomRows.push(i);
                 }
+                randomRows = shuffle(randomRows);
             }
             for(i = 0; i < len; i++){
                 if(added === true){
                     if(comments[i].active === false){
                         if(maxRow-- > 0){
-                            randomRow = randomRows.splice(Math.floor(Math.random() * randomRows.length), 1)[0];
+                            randomRow = randomRows.shift();
                             comments[i].position.y += (this.rowHeight + this.rowSpacing) * randomRow;
                             comments[i].active = true;
                         }else{
