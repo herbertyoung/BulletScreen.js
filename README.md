@@ -33,7 +33,7 @@ var comments = [
 	{avatar: 'img/avatar.jpg', content: '666666'}
 ];
 // add comments
-bulletScreen.addComments(config.comments);
+bulletScreen.addComments(comments);
 ```
 
 Start to display the comments you added.
