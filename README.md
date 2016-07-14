@@ -60,48 +60,60 @@ bulletScreen.configure(config);
 ### canvasWidth
 ### canvasHeight
 Your canvas's width and height.
+
 Default: your browser's width and height.
 
 ### frameRate
 FPS(Frames Per Second).
+
 Default: 30.
 
 ### fontSize
 Comments' font size.
+
 Default: '16px'.
 
 ### fontFamily
 Comments' font family.
+
 Default: 'Arial'.
 
 ### fontColor
 Comments' font color.
+
 Default: '#fff'.
 
 ### rowSpacing
 Spacing between the adjacent rows.
+
 Default: 10.
 
 ### avatarRadius
 The radius of round avatars.
+
 Default: 20.
 
 ### avatarBorder
 The border width of round avatars.
+
 Default: 6.
 
 ### contentBoxHeight
 Height of comments content box.
+
 Default: 28.
 
 ### contentBoxBorderRadius
 Border radius of comments content box.
+
 Default: 6.
 
 ### backgroundColor
 Background color of comments content box and color of avatars' border.
+
 Default: '#fdb720'.
 
 ### bulletScreenInterval
 Interval of Comments show.
+
 Default: 3000.
