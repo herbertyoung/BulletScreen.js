@@ -43,3 +43,65 @@ bulletScreen.start();
 ```
 
 Finally, you can continue to add more comments as you like. And all the "bullets" will fly on the screen.
+
+## Config
+If you want to configure the `BulletScreen` object. just call the instance function `configure` with a object.
+
+```js
+// your customized config
+var config = {
+	frameRate: 40,
+	bulletScreenInterval: 3000
+}
+// configure
+bulletScreen.configure(config);
+```
+
+### canvasWidth
+### canvasHeight
+Your canvas's width and height.
+Default: your browser's width and height.
+
+### frameRate
+FPS(Frames Per Second).
+Default: 30.
+
+### fontSize
+Comments' font size.
+Default: '16px'.
+
+### fontFamily
+Comments' font family.
+Default: 'Arial'.
+
+### fontColor
+Comments' font color.
+Default: '#fff'.
+
+### rowSpacing
+Spacing between the adjacent rows.
+Default: 10.
+
+### avatarRadius
+The radius of round avatars.
+Default: 20.
+
+### avatarBorder
+The border width of round avatars.
+Default: 6.
+
+### contentBoxHeight
+Height of comments content box.
+Default: 28.
+
+### contentBoxBorderRadius
+Border radius of comments content box.
+Default: 6.
+
+### backgroundColor
+Background color of comments content box and color of avatars' border.
+Default: '#fdb720'.
+
+### bulletScreenInterval
+Interval of Comments show.
+Default: 3000.
