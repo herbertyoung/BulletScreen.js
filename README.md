@@ -117,3 +117,35 @@ Default: '#fdb720'.
 Interval of Comments show.
 
 Default: 3000.
+
+## Methods
+
+### init([options])
+To initialize a `BulletScreen` instance with a config object. About config option detail you can see above description.
+
+Parameters:
+- options: Object
+
+### configure(options)
+To configure a `BulletScreen` instance with a config object.
+
+Parameters:
+- options: Object
+
+### addComments(comments)
+To add comments to the "bullet screen".
+
+Parameters:
+- comments: Array
+
+### start()
+Starting to display "bullet screen".
+
+### pause()
+To pause displaying "bullet screen".
+
+### resume()
+To resume starting to display the "bullet screen" which is paused.
+
+### clear()
+To reset the config of a `BulletScreen` instance and clearing the screen.
