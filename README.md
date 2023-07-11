@@ -1,7 +1,7 @@
 # BulletScreen.js
 A JavaScript plugin make a bullet screen using html5 canvas.
 
-- [Demo](https://yhb241.github.io/BulletScreen.js/)
+- [Demo](https://herbertyoung.github.io/BulletScreen.js/)
 
 ## Usage
 
